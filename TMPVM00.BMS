@@ -1,0 +1,45 @@
+TMPVM00  DFHMSD TYPE=MAP,                                              C
+               CTRL=(FRSET,FREEKB),                                    C
+               LANG=COBOL,                                             C
+               MODE=INOUT,                                             C
+               STORAGE=AUTO,                                           C
+               TIOAPFX=YES
+MPPVM00  DFHMDI COLUMN=0001,                                           C
+               HEADER=YES,                                             C
+               LINE=0001,                                              C
+               SIZE=(24,80),                                           C
+               TIOAPFX=YES
+MASK     DFHMDF ATTRB=ASKIP,                                           C
+               INITIAL='#PVM0',                                        C
+               LENGTH=5,                                               C
+               POS=(1,75)
+DFRAME   DFHMDF ATTRB=ASKIP,                                           C
+               INITIAL='PROVA FRAME',                                  C
+               LENGTH=11,                                              C
+               POS=(4,17)
+CINP     DFHMDF ATTRB=UNPROT,                                          C
+               INITIAL='_______________________________________________C
+               ___',                                                   C
+               LENGTH=50,                                              C
+               POS=(6,6)
+COUT     DFHMDF ATTRB=ASKIP,                                           C
+               INITIAL='_______________________________________________C
+               ___',                                                   C
+               LENGTH=50,                                              C
+               POS=(8,6)
+MESS     DFHMDF ATTRB=(ASKIP,DRK),                                     C
+               LENGTH=79,                                              C
+               POS=(23,1)
+M01      DFHMDF ATTRB=(ASKIP,BRT),                                     C
+               INITIAL='==>',                                          C
+               LENGTH=3,                                               C
+               POS=(24,1)
+TASFUN   DFHMDF ATTRB=(UNPROT,NUM),                                    C
+               INITIAL='__',                                           C
+               LENGTH=2,                                               C
+               POS=(24,5)
+DTASFUN  DFHMDF ATTRB=(ASKIP,NORM),                                    C
+               LENGTH=72,                                              C
+               POS=(24,8)
+         DFHMSD TYPE=FINAL
+         END
