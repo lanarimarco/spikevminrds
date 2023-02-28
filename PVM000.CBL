@@ -1,5 +1,3 @@
-000000$set OSVS
-000000$set REF
        IDENTIFICATION DIVISION.
        PROGRAM-ID. PVM000.
       *
@@ -39,9 +37,10 @@
       *
       *.... Eventi a video
       *
-       77  KEY-STATUS IS SPECIAL-NAMES CRT STATUS PIC 9(5) VALUE 0.
+      ********77  KEY-STATUS IS SPECIAL-NAMES CRT STATUS PIC 9(5) VALUE 0.
+       77  KEY-STATUS 			PIC 9(5) VALUE 0.
       *
-       01  CURRENT-CONTROL		PIC 99 VALUE ZEROES.
+      *******01  CURRENT-CONTROL		PIC 99 VALUE ZEROES.
       * 
       *.... Handles
       *
@@ -156,7 +155,7 @@
       * 
            PERFORM CREATE-WIN.
       *
-	   MOVE 1 TO CURRENT-CONTROL.
+      ******	   MOVE 1 TO CURRENT-CONTROL.
       *
       *.... Ciclo richiesta	   
       *	   
@@ -172,14 +171,12 @@
       *
       *.... Va al controllo successivo
       *
-           EVALUATE KEY-STATUS
+           EVALUATE  WW-ENTRY-FIELD-1
       *
-	   WHEN 27
-	   WHEN 107
+	   WHEN "ESC"
 		GO TO STOP-ROUTINE
       *
-	   WHEN 201
-	   WHEN 13
+	   WHEN OTHER
 		DISPLAY WW-ENTRY-FIELD-1
 		   COL 3
 		   LINE 7
@@ -202,9 +199,9 @@
       *.... Creazione Finestra
       *
       ******    DISPLAY INITIAL GRAPHICAL WINDOW
-           DISPLAY INITIAL WINDOW
-	      SCREEN COL 1, SCREEN LINE 1, LINES 30,50, SIZE 50,10,
-              CELL HEIGHT 10, CELL WIDTH 10.
+      *     DISPLAY INITIAL WINDOW
+      *	      SCREEN COL 1, SCREEN LINE 1, LINES 30,50, SIZE 50,10,
+      *              CELL HEIGHT 10, CELL WIDTH 10.
       ******	      COLOR 65793,
       ******       LINK TO THREAD, MODELESS, NO SCROLL, 
       ******  TITLE-BAR,
@@ -217,20 +214,7 @@
 
       ******	   SET WM-EF-HND-EF-1 TO HANDLE SCREEN1-EF-1.
       ******	   SET WM-EF-HND-EF-2 TO HANDLE SCREEN1-EF-2.
-	   DISPLAY "Premi ESC per uscire " LINE 10.
-      *
-      *
-------*--------------------- Lancio funzioni -------------------------
-      *
-      *
-      *
-      *------------------------------------------------------------
-      *
-       ATTESA.
-      *....  Wait per 1 secondo
-                CALL "attesa".
-      *
-      *
+	   DISPLAY "Digita ESC per uscire " LINE 10.
       *
       *
       *------------------------------------------------------------
